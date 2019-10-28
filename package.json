@@ -2,7 +2,7 @@
   "name": "obligatorisk_aflevering",
   "version": "1.0.0",
   "engines": {
-    "node": "12.13.0"
+    "node": "11.8.0"
   },
   "private": true,
   "scripts": {
