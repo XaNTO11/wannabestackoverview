@@ -11,7 +11,10 @@ const mongoose = require('mongoose'); // We need the mongoose library
 const appName = "Wannabe stackoverview";
 const port = (process.env.PORT || 8080); // Pick either port 8080 or the port in the PORT env variable.
 const app = express(); // Get the express app.
-
+app.use(morgan('combined')); // Log all requests to the console
+app.use(bodyParser.json()); // Parse JSON from the request body
+app.use(cors()); // Enable Cross Origin Resource Sharing across all routes. Basically open up your API to everyone.
+app.use(express.static('../client/build'));
 // const url = (process.env.MONGO_URL || 'mongodb://localhost/kitten_db');
 
 mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -21,8 +24,7 @@ mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db'
     .catch(e => { // If any errors happens during connection, we print them here.
         console.error(e)
     });
-app.use(bodyParser.json()); // Parse JSON from the request body
-app.use(cors()); // Enable Cross Origin Resource Sharing across all routes. Basically open up your API to everyone.
+
 
 const questionSchema = new mongoose.Schema({
     title: String,
