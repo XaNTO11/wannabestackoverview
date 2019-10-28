@@ -17,7 +17,7 @@ class App extends Component {
     this.getData();
   }
   getData() {
-    const url = 'http://localhost:8081/api/questions';
+    const url = `${this.API_URL}/questions`;
     fetch(url)
         .then(result => result.json()) // Convert to JSON
         .then(result => { // Put it in the state
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   askQuestion(title, description) {
-    const url = 'http://localhost:8081/api/questions';
+    const url = `${this.API_URL}/questions`;
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   postAnswer(author, answer, qID) {
-    const url = 'http://localhost:8081/api/question/'+ qID;
+    const url = `${this.API_URL}/question`+ qID;
     fetch(url, {
       method: 'PUT',
       body: JSON.stringify({

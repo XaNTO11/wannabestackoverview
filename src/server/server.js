@@ -12,6 +12,8 @@ const appName = "Wannabe stackoverview";
 const port = (process.env.PORT || 8080); // Pick either port 8080 or the port in the PORT env variable.
 const app = express(); // Get the express app.
 
+// const url = (process.env.MONGO_URL || 'mongodb://localhost/kitten_db');
+
 mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db', {useNewUrlParser: true, useUnifiedTopology: true})
     .then((connection) => { // When the Promise resolves, we do some stuff.
         console.log("Database connected");
