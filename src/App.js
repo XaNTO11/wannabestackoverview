@@ -6,7 +6,8 @@ import {Router} from "@reach/router";
 
 class App extends Component {
 
-    API_URL = process.env.REACT_APP_API_URL;
+    API_URL =  process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
+    // const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
   constructor(props) {
     super(props);
@@ -19,6 +20,7 @@ class App extends Component {
     this.getData();
   }
   getData() {
+      console.log(process.env.NODE_ENV)
     const url = `${this.API_URL}/questions`;
     fetch(url)
         .then(result => result.json()) // Convert to JSON
