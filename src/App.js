@@ -6,7 +6,8 @@ import {Router} from "@reach/router";
 
 class App extends Component {
 
-    API_URL =  process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
+    // API_URL =  process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
+    API_URL = process.env.REACT_APP_PROD_API_URL
     // const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends Component {
   }
 
   askQuestion(title, description) {
-    const url = `/api/questions`;
+    const url = `${this.API_URL}/questions`;
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
