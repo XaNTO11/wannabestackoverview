@@ -21,7 +21,7 @@ class App extends Component {
     this.getData();
   }
   getData() {
-      // console.log(process.env.NODE_ENV)
+      console.log(process.env.NODE_ENV)
     const url = `${this.API_URL}/questions`;
     fetch(url)
         .then(result => result.json()) // Convert to JSON
