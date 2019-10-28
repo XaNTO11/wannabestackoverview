@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   askQuestion(title, description) {
-    const url = `${this.API_URL}/api/questions`;
+    const url = `${this.API_URL}/questions`;
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
