@@ -4,6 +4,7 @@ const bodyParser = require('body-parser'); // Parse all JSON in incoming request
 const morgan = require('morgan'); // Log out all http requests to the console
 const cors = require('cors');
 const mongoose = require('mongoose'); // We need the mongoose library
+const path = require('path');
 
 
 
