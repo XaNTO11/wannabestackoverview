@@ -4,7 +4,7 @@ const bodyParser = require('body-parser'); // Parse all JSON in incoming request
 const morgan = require('morgan'); // Log out all http requests to the console
 const cors = require('cors');
 const mongoose = require('mongoose'); // We need the mongoose library
-const path = require('path');
+// const path = require('path');
 
 
 
@@ -57,13 +57,13 @@ const Question = mongoose.model('Questions');
 
     });
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build','index.html'), function(err) {
-        if (err) {
-            res.status(500).send(err)
-        }
-    })
-})
+// app.get('/*', function(req, res) {
+//     res.sendFile(path.join(__dirname, 'build','index.html'), function(err) {
+//         if (err) {
+//             res.status(500).send(err)
+//         }
+//     })
+// })
 
     app.post(`/api/questions`, async (req, res) => {
         let question = await Question.create(req.body);
