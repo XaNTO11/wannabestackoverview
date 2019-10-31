@@ -46,24 +46,52 @@ const Question = mongoose.model('Questions');
 
     app.get(`/api/questions`, async (req, res) => {
         let questions = await Question.find();
-        return res.status(200).send(questions);
+
+        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else{
+                return res.status(200).send(questions);
+            }
+        })
     });
+
+app.get('/*', function(req, res) {
+
+})
 
     app.post(`/api/questions`, async (req, res) => {
         let question = await Question.create(req.body);
-        return res.status(201).send({
-            error: false,
-            question
+        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else{
+                return res.status(201).send({
+                    error: false,
+                    question
+                })
+            }
         })
+
     })
 
     app.get(`/api/question/:id`, async (req, res) => {
         const _id = req.params.id;
         let question = await Question.findById(_id);
-        return res.status(202).send({
-            error: false,
-            question
+        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+            if (err) {
+                res.status(500).send(err)
+            }
+            else{
+                return res.status(202).send({
+                    error: false,
+                    question
+                })
+            }
         })
+
 
     });
 
@@ -77,12 +105,24 @@ app.put(`/api/question/:id`, async (req, res) => {
 
     console.log(question, "Bahhhhh")
 
-
-
-    return res.status(202).send({
-        error: false,
-        question
+    res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+        if (err) {
+            res.status(500).send(err)
+        }
+        else{
+            return res.status(202).send({
+                error: false,
+                question
+            })
+        }
     })
+
+
+
+    // return res.status(202).send({
+    //     error: false,
+    //     question
+    // })
 
 });
     app.delete(`/api/question/:id`, async (req, res) => {

@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   getQuestion(_id){
-        console.log(this.state.questionList)
+        console.log(this.state.questionList, "test")
     return this.state.questionList.find(e => e._id === String(_id));
   }
 
