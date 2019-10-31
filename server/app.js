@@ -48,22 +48,22 @@ const Question = mongoose.model('Questions');
     app.get(`/api/questions`, async (req, res) => {
         let questions = await Question.find();
 
-        res.sendFile(path.join(__dirname,'build' ,'index.html'), function(err) {
-            if (err) {
-                res.status(500).send(err)
-            }
-        })
+        // res.sendFile(path.join(__dirname,'build' ,'index.html'), function(err) {
+        //     if (err) {
+        //         res.status(500).send(err)
+        //     }
+        // })
         return res.status(200).send(questions);
 
     });
-    
+
     app.post(`/api/questions`, async (req, res) => {
         let question = await Question.create(req.body);
-        res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
-            if (err) {
-                res.status(500).send(err)
-            }
-        })
+        // res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
+        //     if (err) {
+        //         res.status(500).send(err)
+        //     }
+        // })
         return res.status(201).send({
             error: false,
             question
@@ -74,11 +74,11 @@ const Question = mongoose.model('Questions');
     app.get(`/api/question/:id`, async (req, res) => {
         const _id = req.params.id;
         let question = await Question.findById(_id);
-        res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
-            if (err) {
-                res.status(500).send(err)
-            }
-        })
+        // res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
+        //     if (err) {
+        //         res.status(500).send(err)
+        //     }
+        // })
         return res.status(202).send({
             error: false,
             question
@@ -97,11 +97,11 @@ app.put(`/api/question/:id`, async (req, res) => {
 
     console.log(question, "Bahhhhh")
 
-    res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
-        if (err) {
-            res.status(500).send(err)
-        }
-    })
+    // res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
+    //     if (err) {
+    //         res.status(500).send(err)
+    //     }
+    // })
     return res.status(202).send({
         error: false,
         question
