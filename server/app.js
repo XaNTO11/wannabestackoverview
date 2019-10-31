@@ -16,8 +16,17 @@ app.use(bodyParser.json()); // Parse JSON from the request body
 app.use(cors()); // Enable Cross Origin Resource Sharing across all routes. Basically open up your API to everyone.
 app.use(express.static('../client/build'));
 // const url = (process.env.MONGO_URL || 'mongodb://localhost/kitten_db');
+let mongoaccess = process.env.MONGO_DB
 
-mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db', {useNewUrlParser: true, useUnifiedTopology: true})
+// mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db', {useNewUrlParser: true, useUnifiedTopology: true})
+//     .then((connection) => { // When the Promise resolves, we do some stuff.
+//         console.log("Database connected");
+//     })
+//     .catch(e => { // If any errors happens during connection, we print them here.
+//         console.error(e)
+//     });
+
+mongoose.connect(mongoaccess, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((connection) => { // When the Promise resolves, we do some stuff.
         console.log("Database connected");
     })
@@ -25,11 +34,10 @@ mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db'
         console.error(e)
     });
 
-
 const questionSchema = new mongoose.Schema({
     title: String,
     description: String,
-    answers: [{authorName: String, answer: String}]
+    answers: [{authorName: String, answer: String, votes: Number}]
 })
 mongoose.model('Questions', questionSchema);
 

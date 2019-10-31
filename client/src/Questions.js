@@ -10,7 +10,7 @@ class Questions extends Component {
     render() {
         return(
             <React.Fragment>
-                <h1>Recipes</h1>
+                <h1>Questions</h1>
                 <ul>{/* Cheap trick to define some data right in the render method and turn it into a list */}
                     {this.props.questionList.map(e =>
                         <li key={e._id}>

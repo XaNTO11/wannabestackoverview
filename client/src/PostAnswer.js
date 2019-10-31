@@ -8,7 +8,8 @@ class PostAnswer extends Component {
 
         this.state = { // When initializing the state in the constructor, you just create it as an object.
             author: "", // input is initialized to the empty string.
-            answer: ""
+            answer: "",
+            votes: 0
         };
     }
     handleChange(event) {
@@ -19,7 +20,8 @@ class PostAnswer extends Component {
 
     handleButtonClick(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
-        this.props.postAnswer(this.state.author, this.state.answer); // Add the task to the state in App.js
+        this.props.postAnswer(this.state.author, this.state.answer, this.state.votes); // Add the task to the state in App.js
+        console.log(this.state.votes, "pressed")
 
         // this.props.addTask is actually the arrow function in App.js (from the render method)
         // defined in <AddTask addTask={(task) => this.addTask(task)}/>

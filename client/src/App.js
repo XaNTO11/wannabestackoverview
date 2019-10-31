@@ -6,9 +6,7 @@ import {Router} from "@reach/router";
 
 class App extends Component {
 
-    // API_URL =  process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
     API_URL = process.env.REACT_APP_API_URL
-    // const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
   constructor(props) {
     super(props);
@@ -35,7 +33,7 @@ class App extends Component {
         });
   }
 
-  getRecipe(_id){
+  getQuestion(_id){
     return this.state.questionList.find(e => e._id === String(_id));
   }
 
@@ -59,13 +57,16 @@ class App extends Component {
         });
   }
 
-  postAnswer(author, answer, qID) {
+
+  postAnswer(author, answer, votes, qID) {
     const url = `${this.API_URL}/question/`+ qID;
+    console.log(votes, "Se hvor mange votes")
     fetch(url, {
       method: 'PUT',
       body: JSON.stringify({
         authorName: author,
         answer: answer,
+          votes: votes
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -82,8 +83,7 @@ class App extends Component {
         <React.Fragment>
           <Router>
             <Questions path="/" questionList={this.state.questionList} askQuestion={(title, description) => this.askQuestion(title, description)}/>
-            <Question path="/question/:id" getRecipe={(_id) => this.getRecipe(_id)} postAnswer={(author, answer, qID) => this.postAnswer(author, answer, qID)}/>
-            {/*<Filter path="/recipe/with/:filter" getFilter={(ingredient) => this.getFilter(ingredient)}/>*/}
+            <Question path="/question/:id" getQuestion={(_id) => this.getQuestion(_id)} postAnswer={(author, answer, votes, qID) => this.postAnswer(author, answer, votes, qID)}/>
           </Router>
 
         </React.Fragment>
