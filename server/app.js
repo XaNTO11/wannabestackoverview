@@ -52,10 +52,8 @@ const Question = mongoose.model('Questions');
             if (err) {
                 res.status(500).send(err)
             }
-            else{
-                return res.status(200).send(questions);
-            }
-        })
+        return res.status(200).send(questions);
+
     });
 
 app.get('/*', function(req, res) {
@@ -68,12 +66,10 @@ app.get('/*', function(req, res) {
             if (err) {
                 res.status(500).send(err)
             }
-            else{
-                return res.status(201).send({
-                    error: false,
-                    question
-                })
-            }
+        })
+        return res.status(201).send({
+            error: false,
+            question
         })
 
     })
@@ -85,12 +81,10 @@ app.get('/*', function(req, res) {
             if (err) {
                 res.status(500).send(err)
             }
-            else{
-                return res.status(202).send({
-                    error: false,
-                    question
-                })
-            }
+        })
+        return res.status(202).send({
+            error: false,
+            question
         })
 
 
@@ -110,12 +104,10 @@ app.put(`/api/question/:id`, async (req, res) => {
         if (err) {
             res.status(500).send(err)
         }
-        else{
-            return res.status(202).send({
-                error: false,
-                question
-            })
-        }
+    })
+    return res.status(202).send({
+        error: false,
+        question
     })
 
 
