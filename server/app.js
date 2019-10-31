@@ -56,11 +56,7 @@ const Question = mongoose.model('Questions');
         return res.status(200).send(questions);
 
     });
-
-app.get('/*', function(req, res) {
-
-})
-
+    
     app.post(`/api/questions`, async (req, res) => {
         let question = await Question.create(req.body);
         res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
