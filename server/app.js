@@ -47,7 +47,7 @@ const Question = mongoose.model('Questions');
     app.get(`/api/questions`, async (req, res) => {
         let questions = await Question.find();
 
-        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+        res.sendFile(path.join(__dirname,'build' ,'index.html'), function(err) {
             if (err) {
                 res.status(500).send(err)
             }
@@ -63,7 +63,7 @@ app.get('/*', function(req, res) {
 
     app.post(`/api/questions`, async (req, res) => {
         let question = await Question.create(req.body);
-        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+        res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
             if (err) {
                 res.status(500).send(err)
             }
@@ -80,7 +80,7 @@ app.get('/*', function(req, res) {
     app.get(`/api/question/:id`, async (req, res) => {
         const _id = req.params.id;
         let question = await Question.findById(_id);
-        res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+        res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
             if (err) {
                 res.status(500).send(err)
             }
@@ -105,7 +105,7 @@ app.put(`/api/question/:id`, async (req, res) => {
 
     console.log(question, "Bahhhhh")
 
-    res.sendFile(path.join(__dirname, 'client/src/index.html'), function(err) {
+    res.sendFile(path.join(__dirname,'build', 'index.html'), function(err) {
         if (err) {
             res.status(500).send(err)
         }
