@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   getQuestion(_id){
+        this.getData();
     return this.state.questionList.find(e => e._id === String(_id));
   }
 
