@@ -52,6 +52,7 @@ const Question = mongoose.model('Questions');
             if (err) {
                 res.status(500).send(err)
             }
+        })
         return res.status(200).send(questions);
 
     });
