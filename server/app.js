@@ -1,21 +1,34 @@
 /**** External libraries ****/
-const express = require('express'); // The express.js library for writing the API
-const bodyParser = require('body-parser'); // Parse all JSON in incoming requests automatically
-const morgan = require('morgan'); // Log out all http requests to the console
-const cors = require('cors');
-const mongoose = require('mongoose'); // We need the mongoose library
-const path = require('path');
+// const express = require('express'); // The express.js library for writing the API
+// const bodyParser = require('body-parser'); // Parse all JSON in incoming requests automatically
+// const morgan = require('morgan'); // Log out all http requests to the console
+// const cors = require('cors');
+// const mongoose = require('mongoose'); // We need the mongoose library
+// const path = require('path');
+//
 
+const express = require('express');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const path = require('path');
 
 
 /**** Configuration ****/
 const appName = "Wannabe stackoverview";
-const port = (process.env.PORT || 8080); // Pick either port 8080 or the port in the PORT env variable.
-const app = express(); // Get the express app.
-app.use(morgan('combined')); // Log all requests to the console
+const port = (process.env.PORT || 8080);
+const app = express();
+app.use(cors());
 app.use(bodyParser.json()); // Parse JSON from the request body
-app.use(cors()); // Enable Cross Origin Resource Sharing across all routes. Basically open up your API to everyone.
-app.use(express.static('../client/build'));
+app.use(morgan('combined')); // Log all requests to the console
+app.use(express.static('../client/build')); // Only needed when running build in production mode
+// const port = (process.env.PORT || 8080); // Pick either port 8080 or the port in the PORT env variable.
+// const app = express(); // Get the express app.
+// app.use(morgan('combined')); // Log all requests to the console
+// app.use(bodyParser.json()); // Parse JSON from the request body
+// app.use(cors()); // Enable Cross Origin Resource Sharing across all routes. Basically open up your API to everyone.
+// app.use(express.static('../client/build'));
 // const url = (process.env.MONGO_URL || 'mongodb://localhost/kitten_db');
 
 // mongoose.connect('mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -120,13 +133,13 @@ app.post('/api/question/:id', (req, res) => {
 app.get('*', (req, res) =>
     res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
 );
-const mongoaccess = process.env.MONGO_DB
+const url = process.env.MONGO_DB
 
-mongoose.connect(mongoaccess, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
     .then((connection) => { // When the Promise resolves, we do some stuff.
+        app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
         console.log("Database connected");
     })
     .catch(e => { // If any errors happens during connection, we print them here.
         console.error(e)
     });
-// app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
