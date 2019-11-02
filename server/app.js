@@ -4,7 +4,7 @@ const bodyParser = require('body-parser'); // Parse all JSON in incoming request
 const morgan = require('morgan'); // Log out all http requests to the console
 const cors = require('cors');
 const mongoose = require('mongoose'); // We need the mongoose library
-// const path = require('path');
+const path = require('path');
 
 
 
@@ -135,4 +135,7 @@ app.put(`/api/question/:id`, async (req, res) => {
 
     })
 /**** Start! ****/
+app.get('*', (req, res) =>
+    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+);
 app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
