@@ -69,10 +69,9 @@ app.get(`/api/question/:id`, async (req, res) => {
         question
     })
 });
-app.get(`/api/question/:id/answer/:aId`, async (req, res) => {
+app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    const aId = req.params.aId;
-    let answers = await Question.findById(_id).answers.id(_id == aId);
+    let answers = await Question.findById(_id)
     console.log(Question.findById(_id).title)
     return res.status(202).send({
         error: false,
