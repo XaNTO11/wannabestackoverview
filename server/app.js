@@ -69,9 +69,9 @@ app.get(`/api/question/:id`, async (req, res) => {
         question
     })
 });
-app.get(`/api/question/:id/answers/`, async (req, res) => {
+app.get(`/api/question/:id/answer/`, async (req, res) => {
     const _id = req.params.id;
-    let answers = await Question.findById(_id).select('answers');
+    let answers = await Question.findById(_id).select('answers').where('_id' == "5dbd7d7dfbaa55001777af43" );
     console.log(Question.findById(_id).title)
     return res.status(202).send({
         error: false,
