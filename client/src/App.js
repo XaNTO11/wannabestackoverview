@@ -45,46 +45,46 @@ class App extends Component {
 
   }
 
-  // askQuestion(title, description) {
-  //   const url = `${this.API_URL}/questions`;
-  //   fetch(url, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       title: title,
-  //       description: description,
-  //     }),
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   })
-  //       .then(response => response.json())
-  //       .then(json => {
-  //         console.log("Result of posting a new task:");
-  //         console.log(json);
-  //         this.getData();
-  //       });
-  // }
-  //
-  //
-  // postAnswer(author, answer, votes, qID) {
-  //   const url = `${this.API_URL}/question/`+ qID;
-  //   console.log(votes, "Se hvor mange votes")
-  //   fetch(url, {
-  //     method: 'PUT',
-  //     body: JSON.stringify({
-  //       authorName: author,
-  //       answer: answer,
-  //         votes: votes
-  //     }),
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   })
-  //       .then(response => response.json())
-  //       .then(json => {
-  //         this.getData();
-  //       });
-  // }
+  askQuestion(title, description) {
+    const url = `${this.API_URL}/questions`;
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        title: title,
+        description: description,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+        .then(response => response.json())
+        .then(json => {
+          console.log("Result of posting a new task:");
+          console.log(json);
+          this.getData();
+        });
+  }
+
+
+  postAnswer(author, answer, votes, qID) {
+    const url = `${this.API_URL}/question/`+ qID;
+    console.log(votes, "Se hvor mange votes")
+    fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify({
+        authorName: author,
+        answer: answer,
+          votes: votes
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+        .then(response => response.json())
+        .then(json => {
+          this.getData();
+        });
+  }
 
   render() {
     return (
