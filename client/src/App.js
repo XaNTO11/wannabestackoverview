@@ -41,16 +41,6 @@ class App extends Component {
   getQuestion(_id){
         console.log(this.state.questionList, "test")
       // console.log(process.env.NODE_ENV)
-      // const url = `${this.API_URL}/question/${_id}`;
-      // fetch(url)
-      //     .then(result => result.json()) // Convert to JSON
-      //     .then(result => { // Put it in the state
-      //         return result
-      //     })
-      //     .catch((error) => { // Catch any errors and write them to the browser console
-      //         console.error(error);
-      //     });
-
     return this.state.questionList.find(e => e._id === String(_id));
 
   }
