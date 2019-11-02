@@ -41,83 +41,83 @@ app.use(express.static('../client/build')); // Only needed when running build in
 
 
 
-// const questionSchema = new mongoose.Schema({
-//     title: String,
-//     description: String,
-//     answers: [{authorName: String, answer: String, votes: Number}]
-// })
-// mongoose.model('Questions', questionSchema);
+const questionSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    answers: [{authorName: String, answer: String, votes: Number}]
+})
+const Question = mongoose.model('Questions', questionSchema);
 
 // const Question = mongoose.model('Questions');
-const questionDAL = require('./questions_dal')(mongoose);
+// const questionDAL = require('./questions_dal')(mongoose);
 
-    // app.get(`/api/questions`, async (req, res) => {
-    //     let questions = await Question.find();
-    //     return res.status(200).send(questions);
-    //
-    // });
-app.get('/api/questions', (req, res) => {
-    // Get all kittens. Put kitten into json response when it resolves.
-    questionDAL.getData().then(questions => res.json(questions));
-});
+    app.get(`/api/questions`, async (req, res) => {
+        let questions = await Question.find();
+        return res.status(200).send(questions);
 
-// app.get(`/api/question/:id`, async (req, res) => {
-//     const _id = req.params.id;
-//     let question = await Question.findById(_id);
-//     return res.status(202).send({
-//         error: false,
-//         question
-//     })
+    });
+// app.get('/api/questions', (req, res) => {
+//     // Get all kittens. Put kitten into json response when it resolves.
+//     questionDAL.getData().then(questions => res.json(questions));
 // });
 
-app.get('/api/question/:id', (req, res) => {
+app.get(`/api/question/:id`, async (req, res) => {
     const _id = req.params.id;
-    questionDAL.getQuestion(_id).then(question => res.json(question));
+    let question = await Question.findById(_id);
+    return res.status(202).send({
+        error: false,
+        question
+    })
 });
 
-app.post('/api/questions', (req, res) => {
-    // let kitten = {
-    //     name : req.body.name,
-    //     hobbies : [] // Empty hobby array
-    // };
-    let question = {
-        title: req.body.title,
-        description: req.body.description,
-        answers: []
-    }
-    questionDAL.askQuestion(question).then(newQuestion => res.json(newQuestion));
-});
-
-    // app.post(`/api/questions`, async (req, res) => {
-    //     let question = await Question.create(req.body);
-    //     return res.status(201).send({
-    //         error: false,
-    //         question
-    //     })
-    //
-    // })
-
-app.put('/api/question/:id', (req, res) => {
-    // To add a hobby, you need the id of the kitten, and some hobby text from the request body.
-    questionDAL.postAnswer(req.params.author, req.params.answer, req.params.id)
-        .then(updatedQuestion => res.json(updatedQuestion));
-});
-//
-// app.put(`/api/question/:id`, async (req, res) => {
-//     console.log(req.body)
+// app.get('/api/question/:id', (req, res) => {
 //     const _id = req.params.id;
-//
-//     let question = await Question.findById(_id)
-//     question.answers.push(req.body)
-//     question.save();
-//
-//     console.log(question, "Bahhhhh")
-//     return res.status(202).send({
-//         error: false,
-//         question
-//     })
-//
+//     questionDAL.getQuestion(_id).then(question => res.json(question));
 // });
+
+// app.post('/api/questions', (req, res) => {
+//     // let kitten = {
+//     //     name : req.body.name,
+//     //     hobbies : [] // Empty hobby array
+//     // };
+//     let question = {
+//         title: req.body.title,
+//         description: req.body.description,
+//         answers: []
+//     }
+//     questionDAL.askQuestion(question).then(newQuestion => res.json(newQuestion));
+// });
+
+    app.post(`/api/questions`, async (req, res) => {
+        let question = await Question.create(req.body);
+        return res.status(201).send({
+            error: false,
+            question
+        })
+
+    })
+
+// app.put('/api/question/:id', (req, res) => {
+//     // To add a hobby, you need the id of the kitten, and some hobby text from the request body.
+//     questionDAL.postAnswer(req.params.author, req.params.answer, req.params.id)
+//         .then(updatedQuestion => res.json(updatedQuestion));
+// });
+//
+app.put(`/api/question/:id`, async (req, res) => {
+    console.log(req.body)
+    const _id = req.params.id;
+
+    let question = await Question.findById(_id)
+    question.answers.push(req.body)
+    question.save();
+
+    console.log(question, "Bahhhhh")
+    return res.status(202).send({
+        error: false,
+        question
+    })
+
+});
 //     app.delete(`/api/question/:id`, async (req, res) => {
 //         const {id} = req.params;
 //
