@@ -99,7 +99,7 @@ app.post('/api/questions', (req, res) => {
 
 app.put('/api/question/:id', (req, res) => {
     // To add a hobby, you need the id of the kitten, and some hobby text from the request body.
-    questionDAL.postAnswer(req.prams.author, req.params.answer, req.params.id)
+    questionDAL.postAnswer(req.params.author, req.params.answer, req.params.id)
         .then(updatedQuestion => res.json(updatedQuestion));
 });
 //
