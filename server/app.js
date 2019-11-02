@@ -69,6 +69,14 @@ app.get(`/api/question/:id`, async (req, res) => {
         question
     })
 });
+app.get(`/api/question/:id/answers`, async (req, res) => {
+    const _id = req.params.id;
+    let answers = await Question.findById(_id).answers;
+    return res.status(202).send({
+        error: false,
+        answers
+    })
+});
 
 // app.get('/api/question/:id', (req, res) => {
 //     const _id = req.params.id;
