@@ -54,7 +54,7 @@ class Db {
     async postAnswer(author, answer, votes, qID) {
         // TODO: Error handling
         const question = await this.getQuestion(qID);
-        console.log(question);
+        console.log(question, "Spørgsmål");
         question.answers.push({authorName: author, answer: answer, votes: votes});
         return question.save();
     }
