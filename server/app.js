@@ -44,7 +44,7 @@ app.use(express.static('../client/build')); // Only needed when running build in
 const questionSchema = new mongoose.Schema({
     title: String,
     description: String,
-    answers: [{"answer":{authorName: String, answer: String, votes: Number}}]
+    answers: [{authorName: String, answer: String, votes: Number}]
 })
 const Question = mongoose.model('Questions', questionSchema);
 
@@ -71,7 +71,8 @@ app.get(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    let answers = await Question.findOne({"answers._id":_id});
+    // let answers = await Question.findOne({"answers._id":_id});
+    let answers = await Question.find({"answers": {_id: _id}})
     // console.log(Question.findById(_id).title)
     return res.status(202).send({
         error: false,
