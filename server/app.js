@@ -69,23 +69,7 @@ app.get(`/api/question/:id`, async (req, res) => {
         question
     })
 });
-app.get(`/api/question/answers/:id`, async (req, res) => {
-    const _id = req.params.id;
-    // await Question.findOne({'answers._id': _id}, 'answers.authorName answers.answer', function (err, person){
-    //     if (err) return handleError(err);
-    //     return res.status(202).send({
-    //         error: false,
-    //         person
-    //     })
-    //     // console.log(person.authorName)
-    // } );
-    let answers = await Question.find({'answers._id':{_id}});
 
-    // let answers = await Question.find({"answers": {_id: _id}})
-    // console.log(Question.findById(_id).title)
-    return res.status(200).send(answers)
-
-});
 
 // app.get('/api/question/:id', (req, res) => {
 //     const _id = req.params.id;
@@ -133,6 +117,17 @@ app.put(`/api/question/:id`, async (req, res) => {
         error: false,
         question
     })
+
+});
+app.put(`/api/question/answers/:id`, async (req, res) => {
+    const _id = req.params.id;
+   let answers = await Question.findOne({'answers._id': _id})
+
+    // let answers = await Question.find({'answers._id':{_id}});
+
+    // let answers = await Question.find({"answers": {_id: _id}})
+    // console.log(Question.findById(_id).title)
+    return res.status(200).send(answers)
 
 });
 //     app.delete(`/api/question/:id`, async (req, res) => {
