@@ -121,19 +121,29 @@ app.put(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    await Question.findOne({'answers._id': _id}, function (err, answer){
-        if (err) return handleError(err);
-        return res.status(202).send({
-            error: false,
-            answer
-        })
-        // console.log(person.authorName)
-    } );
+    // await Question.findOne({'answers._id': _id}, function (err, answer){
+    //     if (err) return handleError(err);
+    //     return res.status(202).send({
+    //         error: false,
+    //         answer
+    //     })
+    //     // console.log(person.authorName)
+    // } );
     // let answers = await Question.find({'answers._id':{_id}});
 
     // let answers = await Question.find({"answers": {_id: _id}})
+    let answers = await Question.findOneAndUpdate({'answers._id': _id},
+        // {
+        // $inc: {votes: 1}
+        // },
+        function (err){
+        if (err) return handleError(err);
+        });
+    // answers.save()
+        // console.log(person.authorName)
+
     // console.log(Question.findById(_id).title)
-    // return res.status(200).send(answers)
+    return res.status(200).send(answers)
 
 });
 //     app.delete(`/api/question/:id`, async (req, res) => {
