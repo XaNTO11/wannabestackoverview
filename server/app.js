@@ -83,10 +83,7 @@ app.get(`/api/question/answers/:id`, async (req, res) => {
 
     // let answers = await Question.find({"answers": {_id: _id}})
     // console.log(Question.findById(_id).title)
-    return res.status(202).send({
-        error: false,
-        answers
-    })
+    return res.status(200).send(answers)
 
 });
 
