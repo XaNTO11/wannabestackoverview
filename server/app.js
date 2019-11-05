@@ -119,7 +119,7 @@ app.put(`/api/question/:id`, async (req, res) => {
     })
 
 });
-app.put(`/api/question/answers/:id`, async (req, res) => {
+app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
     // await Question.findOne({'answers._id': _id}, function (err, answer){
     //     if (err) return handleError(err);
@@ -132,7 +132,7 @@ app.put(`/api/question/answers/:id`, async (req, res) => {
     // let answers = await Question.find({'answers._id':{_id}});
 
     let answer = await Question.find({"answers": {_id: _id}})
-    answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
+    // answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
     // let answer = await Question.findOneAndUpdate({'answers._id': _id},
     //     {
     //     $inc: { "votes": 1}
@@ -140,7 +140,7 @@ app.put(`/api/question/answers/:id`, async (req, res) => {
     //     function (err){
     //     if (err) return handleError(err);
     //     });
-    answer.save()
+    // answer.save()
         // console.log(person.authorName)
 
     // console.log(Question.findById(_id).title)
