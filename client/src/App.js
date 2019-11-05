@@ -74,6 +74,19 @@ class App extends Component {
   }
     Vote(votes, aId){
         const url = `${this.API_URL}/question/answers/`+ aId;
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify({
+                votes: votes
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                this.getData();
+            });
         // let vote = votes
         // console.log(this.state.questionList, "Questions")
         // console.log(aId, "Answer ID")
