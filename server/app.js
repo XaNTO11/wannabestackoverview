@@ -119,14 +119,9 @@ app.put(`/api/question/:id`, async (req, res) => {
     })
 
 });
-app.put(`/api/question/answers/:id`, async (req, res) => {
+app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    await Question.findOneAndUpdate({'answers._id': _id},
-        {
-        $inc: {
-            votes: 1
-        }
-        }, function (err, answer){
+    await Question.findOne({'answers._id': _id}, function (err, answer){
         if (err) return handleError(err);
         return res.status(202).send({
             error: false,
