@@ -19,10 +19,6 @@ class PostAnswer extends Component {
     handleButtonClick(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
         this.props.postAnswer(this.state.author, this.state.answer, this.state.votes); // Add the task to the state in App.js
-        this.setState({
-            author:"",
-            answer:""
-        })
     }
 
     render() {

@@ -19,11 +19,6 @@ class AskQuestion extends Component {
     handleButtonClick(event) {
         event.preventDefault();
         this.props.askQuestion(this.state.title, this.state.description);
-        this.setState({
-            title:"",
-            description:""
-        })
-
     }
 
     render() {
