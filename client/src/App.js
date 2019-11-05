@@ -73,13 +73,11 @@ class App extends Component {
         });
   }
     Vote(vote, aId){
+        let votes = vote
+        console.log(this.state.questionList, "Questions")
         console.log(aId, "Answer ID")
-        console.log(vote, "Up or Downvote")
+        console.log(votes, "Up or Downvote")
   }
-    downVote(vote){
-        console.log(vote)
-
-    }
 
   render() {
     return (
