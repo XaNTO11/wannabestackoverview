@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from "@reach/router";
 import AskQuestion from "./AskQuestion";
 import PostAnswer from "./PostAnswer";
+import Vote from "./Vote";
+
 // import Difficulity from "./Difficulity";
 
 class Question extends Component {
