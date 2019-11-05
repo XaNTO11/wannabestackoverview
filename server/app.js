@@ -79,7 +79,7 @@ app.get(`/api/question/answers/:id`, async (req, res) => {
     //     })
     //     // console.log(person.authorName)
     // } );
-    let answers = await Question.find({'answers': mongoose.Types.ObjectId(_id)})
+    let answers = await Question.find({'answers': _id(_id)})
 
     // let answers = await Question.find({"answers": {_id: _id}})
     // console.log(Question.findById(_id).title)
