@@ -71,7 +71,7 @@ app.get(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    let answers = await Question.answers.id(_id)
+    let answers = await Question.findOne({_id: "5dbd7bcea1b82b0017285665", "answers._id":_id})
     console.log(Question.findById(_id).title)
     return res.status(202).send({
         error: false,
