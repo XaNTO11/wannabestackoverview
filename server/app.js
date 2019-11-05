@@ -71,7 +71,7 @@ app.get(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    let answers = await Question.findOne({'answers._id': _id}, 'authorName answer',function (err, person){
+    await Question.findOne({'answers._id': _id}, 'authorName answer',function (err, person){
         if (err) return handleError(err);
         return res.status(202).send({
             error: false,
