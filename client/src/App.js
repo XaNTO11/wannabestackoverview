@@ -77,6 +77,12 @@ class App extends Component {
         console.log(this.state.questionList, "Questions")
         console.log(aId, "Answer ID")
         console.log(vote, "Up or Downvote")
+        this.state.questionList.forEach(x => x.answers.forEach( y => {
+            if(y == aId){
+                let vote = y.votes+votes
+                console.log(vote)
+            }
+        }))
   }
 
   render() {
