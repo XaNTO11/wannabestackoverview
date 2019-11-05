@@ -19,7 +19,6 @@ class PostAnswer extends Component {
     handleButtonClick(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
         this.props.postAnswer(this.state.author, this.state.answer, this.state.votes); // Add the task to the state in App.js
-        console.log(this.state.votes, "pressed")
     }
 
     render() {
@@ -41,7 +40,7 @@ class PostAnswer extends Component {
                             />
                         </div>
                         <button onClick={(event) => this.handleButtonClick(event)}
-                                type="submit" id="submitItemBtn" className="btn btn-primary">Add Task
+                                type="submit" id="submitItemBtn" className="btn btn-primary">Post answer
                         </button>
                     </form>
                 </div>

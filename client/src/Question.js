@@ -6,8 +6,6 @@ import Vote from "./Vote";
 class Question extends Component {
     constructor(props){
         super(props);
-        console.log(this.props.getQuestion(this.props.id), "Test")
-        console.log(this.props.id, "porps ID!")
     }
 
     render() {

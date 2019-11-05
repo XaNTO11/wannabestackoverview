@@ -12,9 +12,9 @@ const appName = "Wannabe stackoverview";
 const port = (process.env.PORT || 8080);
 const app = express();
 app.use(cors());
-app.use(bodyParser.json()); // Parse JSON from the request body
-app.use(morgan('combined')); // Log all requests to the console
-app.use(express.static('../client/build')); // Only needed when running build in production mode
+app.use(bodyParser.json());
+app.use(morgan('combined'));
+app.use(express.static('../client/build'));
 
 const questionSchema = new mongoose.Schema({
     title: String,
@@ -48,14 +48,12 @@ app.post(`/api/questions`, async (req, res) => {
     })
 
 app.put(`/api/question/:id`, async (req, res) => {
-    console.log(req.body)
     const _id = req.params.id;
 
     let question = await Question.findById(_id)
     question.answers.push(req.body)
     question.save();
 
-    console.log(question, "Bahhhhh")
     return res.status(202).send({
         error: false,
         question

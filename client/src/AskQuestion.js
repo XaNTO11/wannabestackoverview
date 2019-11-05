@@ -41,7 +41,7 @@ class AskQuestion extends Component {
                             />
                         </div>
                         <button onClick={(event) => this.handleButtonClick(event)}
-                                type="submit" id="submitItemBtn" className="btn btn-primary">Add Task
+                                type="submit" id="submitItemBtn" className="btn btn-primary">Ask Question
                         </button>
                     </form>
                 </div>

@@ -19,7 +19,6 @@ class App extends Component {
     this.getData().then(() => console.log("Data gotten"));
   }
     async getData() {
-      console.log(process.env.NODE_ENV)
     const url = `${this.API_URL}/questions`;
         let result = await fetch(url); // Get the data
         let json = await result.json(); // Turn it into json
@@ -46,8 +45,6 @@ class App extends Component {
     })
         .then(response => response.json())
         .then(json => {
-          console.log("Result of posting a new task:");
-          console.log(json);
           this.getData();
         });
   }
@@ -55,7 +52,6 @@ class App extends Component {
 
   postAnswer(author, answer, votes, qID) {
     const url = `${this.API_URL}/question/`+ qID;
-    console.log(votes, "Se hvor mange votes")
     fetch(url, {
           method: 'PUT',
           body: JSON.stringify({
@@ -74,8 +70,6 @@ class App extends Component {
   }
     Vote(votes, aId){
         const url = `${this.API_URL}/question/answers/`+ aId;
-        console.log(aId, "AID")
-        console.log(votes, "Increase or decrease")
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify({
@@ -87,7 +81,6 @@ class App extends Component {
         })
             .then(response => response.json())
             .then(json => {
-                console.log("Increasing or Decreasing votes");
                 this.getData();
             });
   }
