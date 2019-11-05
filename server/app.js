@@ -71,16 +71,22 @@ app.get(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    await Question.findOne({'answers._id': _id}, 'answers.authorName answers.answer', function (err, person){
-        if (err) return handleError(err);
-        return res.status(202).send({
-            error: false,
-            person
-        })
-        // console.log(person.authorName)
-    } );
+    // await Question.findOne({'answers._id': _id}, 'answers.authorName answers.answer', function (err, person){
+    //     if (err) return handleError(err);
+    //     return res.status(202).send({
+    //         error: false,
+    //         person
+    //     })
+    //     // console.log(person.authorName)
+    // } );
+    let answers = await Question.find({'answers': mongoose.Types.ObjectId(_id)})
+
     // let answers = await Question.find({"answers": {_id: _id}})
     // console.log(Question.findById(_id).title)
+    return res.status(202).send({
+        error: false,
+        answers
+    })
 
 });
 
