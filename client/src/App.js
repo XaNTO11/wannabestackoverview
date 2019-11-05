@@ -75,6 +75,7 @@ class App extends Component {
     Vote(votes, aId){
         const url = `${this.API_URL}/question/answers/`+ aId;
         console.log(aId, "AID")
+        console.log(votes, "Increase or decrease")
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify({
