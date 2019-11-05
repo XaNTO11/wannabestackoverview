@@ -18,7 +18,7 @@ class PostAnswer extends Component {
 
     handleButtonClickUpvote(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
-        this.props.upvote(1); // Add the task to the state in App.js
+        this.props.Vote(1); // Add the task to the state in App.js
         console.log(this.state.votes, "Upvote pressed")
 
         // this.props.addTask is actually the arrow function in App.js (from the render method)
@@ -26,7 +26,7 @@ class PostAnswer extends Component {
     }
     handleButtonClickDownvote(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
-        this.props.downvote(-1); // Add the task to the state in App.js
+        this.props.Vote(-1); // Add the task to the state in App.js
         console.log(-1, "Downvote pressed")
 
         // this.props.addTask is actually the arrow function in App.js (from the render method)
