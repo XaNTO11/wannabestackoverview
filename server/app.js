@@ -131,14 +131,15 @@ app.put(`/api/question/answers/:id`, async (req, res) => {
     // } );
     // let answers = await Question.find({'answers._id':{_id}});
 
-    // let answers = await Question.find({"answers": {_id: _id}})
-    let answer = await Question.findOneAndUpdate({'answers._id': _id},
-        {
-        $inc: { "votes": 1}
-        },
-        function (err){
-        if (err) return handleError(err);
-        });
+    let answer = await Question.find({"answers": {_id: _id}})
+    answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
+    // let answer = await Question.findOneAndUpdate({'answers._id': _id},
+    //     {
+    //     $inc: { "votes": 1}
+    //     },
+    //     function (err){
+    //     if (err) return handleError(err);
+    //     });
     answer.save()
         // console.log(person.authorName)
 
