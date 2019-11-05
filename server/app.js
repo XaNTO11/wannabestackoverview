@@ -76,15 +76,15 @@ app.get(`/api/question/answers/:id`, async (req, res) => {
 
     // let answer = await Question.find({"answers": {_id: _id}})
     // answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
-    let answer = await Question.find({'answers._id': _id})
-    answer.update({'answers._id': _id}, {$inc:{'votes': 1}})
+    let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc:{'votes': 1}})
+    // answer.update({'answers._id': _id}, {$inc:{'votes': 1}})
         // {
         // $inc: { 'answers.votes': 1}
         // })
     // answer.save()
         // console.log(person.authorName)
     // console.log(Question.findById(_id).title)
-    return res.status(200).send(answer)
+    return res.status(202).send(answer)
 });
 //     app.delete(`/api/question/:id`, async (req, res) => {
 //         const {id} = req.params;
