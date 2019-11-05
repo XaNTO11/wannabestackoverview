@@ -72,11 +72,11 @@ class App extends Component {
           this.getData();
         });
   }
-    Vote(vote, aId){
-        let votes = vote
+    Vote(votes, aId){
+        let vote = votes
         console.log(this.state.questionList, "Questions")
         console.log(aId, "Answer ID")
-        console.log(votes, "Up or Downvote")
+        console.log(vote, "Up or Downvote")
   }
 
   render() {
@@ -84,7 +84,7 @@ class App extends Component {
         <React.Fragment>
           <Router>
             <Questions path="/" questionList={this.state.questionList} askQuestion={(title, description) => this.askQuestion(title, description)}/>
-            <Question path="/question/:id" getQuestion={(_id) => this.getQuestion(_id)} postAnswer={(author, answer, votes, qID) => this.postAnswer(author, answer, votes, qID)} Vote={(vote, aId) => this.Vote(vote, aId)}/>
+            <Question path="/question/:id" getQuestion={(_id) => this.getQuestion(_id)} postAnswer={(author, answer, votes, qID) => this.postAnswer(author, answer, votes, qID)} Vote={(votes, aId) => this.Vote(votes, aId)}/>
           </Router>
 
         </React.Fragment>

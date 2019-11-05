@@ -7,7 +7,7 @@ class PostAnswer extends Component {
         super(props); // You always need this line in the constructor to call the constructor in the super class.
 
         this.state = { // When initializing the state in the constructor, you just create it as an object.
-            // votes: 0
+             votes: 0
         };
     }
     // handleChange(event) {
@@ -18,6 +18,9 @@ class PostAnswer extends Component {
 
     handleButtonClickUpvote(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
+        this.setState({
+           votes: 1
+        })
         this.props.Vote(1); // Add the task to the state in App.js
         // console.log(this.state.votes, "Upvote pressed")
 
@@ -26,7 +29,10 @@ class PostAnswer extends Component {
     }
     handleButtonClickDownvote(event) {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
-        this.props.Vote(-1); // Add the task to the state in App.js
+        this.setState({
+            votes: -1
+        })
+        this.props.Vote(this.state.votes); // Add the task to the state in App.js
         // console.log(-1, "Downvote pressed")
 
         // this.props.addTask is actually the arrow function in App.js (from the render method)
