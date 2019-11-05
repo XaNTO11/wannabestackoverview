@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-// import Questions from "./Questions";
 
 class PostAnswer extends Component {
 
     constructor(props) {
-        super(props); // You always need this line in the constructor to call the constructor in the super class.
-
-        this.state = { // When initializing the state in the constructor, you just create it as an object.
-            author: "", // input is initialized to the empty string.
+        super(props);
+        this.state = {
+            author: "",
             answer: "",
             votes: 0
         };
@@ -22,9 +20,6 @@ class PostAnswer extends Component {
         event.preventDefault(); // Prevents the form button reloading the whole page. We don't do reloads in a SPA.
         this.props.postAnswer(this.state.author, this.state.answer, this.state.votes); // Add the task to the state in App.js
         console.log(this.state.votes, "pressed")
-
-        // this.props.addTask is actually the arrow function in App.js (from the render method)
-        // defined in <AddTask addTask={(task) => this.addTask(task)}/>
     }
 
     render() {

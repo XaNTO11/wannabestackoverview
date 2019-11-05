@@ -90,29 +90,6 @@ class App extends Component {
                 console.log("Increasing or Decreasing votes");
                 this.getData();
             });
-        // let vote = votes
-        // console.log(this.state.questionList, "Questions")
-        // console.log(aId, "Answer ID")
-        // console.log(vote, "Up or Downvote")
-        // fetch(url, {
-        //     method: 'PUT',
-        //     body: JSON.stringify({
-        //         votes: vote
-        //     }),
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8"
-        //     }
-        // })
-        //     .then(response => response.json())
-        //     .then(json => {
-        //         this.getData();
-        //     });
-        // this.state.questionList.forEach(x => x.answers.forEach( y => {
-        //     if(y == aId){
-        //         let vote = y.votes+votes
-        //         console.log(vote)
-        //     }
-        // }))
   }
 
   render() {

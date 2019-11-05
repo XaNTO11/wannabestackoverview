@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-// import Questions from "./Questions";
 
 class AskQuestion extends Component {
 
     constructor(props) {
-        super(props); // You always need this line in the constructor to call the constructor in the super class.
-        this.state = { // When initializing the state in the constructor, you just create it as an object.
-            title: "", // input is initialized to the empty string.
+        super(props);
+        this.state = {
+            title: "",
             description: ""
         }
     }
@@ -19,8 +18,7 @@ class AskQuestion extends Component {
     }
     handleButtonClick(event) {
         event.preventDefault();
-        // this.props.askQuestion(this.state.title, this.state.description); // Add the task to the state in App.js
-        this.props.askQuestion(this.state.title, this.state.description); // Add the task to the state in App.js
+        this.props.askQuestion(this.state.title, this.state.description);
 
     }
 

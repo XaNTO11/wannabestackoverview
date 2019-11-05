@@ -62,43 +62,13 @@ app.put(`/api/question/:id`, async (req, res) => {
     })
 
 });
+
 app.put(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    // await Question.findOne({'answers._id': _id}, function (err, answer){
-    //     if (err) return handleError(err);
-    //     return res.status(202).send({
-    //         error: false,
-    //         answer
-    //     })
-    //     // console.log(person.authorName)
-    // } );
-    // let answers = await Question.find({'answers._id':{_id}});
-
-    // let answer = await Question.find({"answers": {_id: _id}})
-    // answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
     let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers.$.votes": req.body.votes}})
-    // let answer = await Question.findOneAndUpdate({$inc: {"answers.votes": req.body.votes}})
-
-    // answer.update({'answers._id': _id}, {$inc:{'votes': 1}})
-        // {
-        // $inc: { 'answers.votes': 1}
-        // })
-    // answer.save()
-        // console.log(person.authorName)
-    // console.log(Question.findById(_id).title)
     return res.status(202).send(answer)
 });
-//     app.delete(`/api/question/:id`, async (req, res) => {
-//         const {id} = req.params;
-//
-//         let question = await Question.findByIdAndDelete(id);
-//
-//         return res.status(202).send({
-//             error: false,
-//             question
-//         })
-//
-//     })
+
 /**** Start! ****/
 app.get('*', (req, res) =>
     res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
@@ -106,7 +76,7 @@ app.get('*', (req, res) =>
 const url = process.env.MONGO_DB
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then((connection) => { // When the Promise resolves, we do some stuff.
+    .then((connection) => {
         app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
         console.log("Database connected");
     })
