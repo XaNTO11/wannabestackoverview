@@ -77,7 +77,7 @@ app.get(`/api/question/answers/:id`, async (req, res) => {
     // let answer = await Question.find({"answers": {_id: _id}})
     // answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
     let answer = await Question.find({'answers._id': _id})
-    answer.update({"answers._id": _id}, {$inc:{"answers.votes": 1}})
+    answer.update({'answers._id': _id}, {$inc:{'votes': 1}})
         // {
         // $inc: { 'answers.votes': 1}
         // })
