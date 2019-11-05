@@ -76,7 +76,9 @@ app.put(`/api/question/answers/:id`, async (req, res) => {
 
     // let answer = await Question.find({"answers": {_id: _id}})
     // answer.update({"answers._id": _id}, {$inc:{"votes": 1}})
-    let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers.0.votes": req.body.votes}})
+    let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers._id": _id, "answers.vote": req.body.votes}})
+    // let answer = await Question.findOneAndUpdate({$inc: {"answers.votes": req.body.votes}})
+
     // answer.update({'answers._id': _id}, {$inc:{'votes': 1}})
         // {
         // $inc: { 'answers.votes': 1}
