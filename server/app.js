@@ -58,7 +58,6 @@ app.put(`/api/question/:id`, async (req, res) => {
         error: false,
         question
     })
-
 });
 
 app.put(`/api/question/answers/:id`, async (req, res) => {
