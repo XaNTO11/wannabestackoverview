@@ -34,6 +34,7 @@ class Question extends Component {
                                 <li key={e._id}>
                                     <p> Skrevet af: {e.authorName}</p>
                                     <p>{e.answer}</p>
+                                    <Vote Vote={() => this.props.Vote()}></Vote>
                                 </li>)}
                         </ul>
                         {/*<Link to="/">Back</Link>*/}

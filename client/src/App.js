@@ -72,13 +72,16 @@ class App extends Component {
           this.getData();
         });
   }
+  Vote(){
+
+  }
 
   render() {
     return (
         <React.Fragment>
           <Router>
             <Questions path="/" questionList={this.state.questionList} askQuestion={(title, description) => this.askQuestion(title, description)}/>
-            <Question path="/question/:id" getQuestion={(_id) => this.getQuestion(_id)} postAnswer={(author, answer, votes, qID) => this.postAnswer(author, answer, votes, qID)}/>
+            <Question path="/question/:id" getQuestion={(_id) => this.getQuestion(_id)} postAnswer={(author, answer, votes, qID) => this.postAnswer(author, answer, votes, qID)} Vote={() => this.Vote()}/>
           </Router>
 
         </React.Fragment>
