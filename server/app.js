@@ -71,14 +71,17 @@ app.get(`/api/question/:id`, async (req, res) => {
 });
 app.get(`/api/question/answers/:id`, async (req, res) => {
     const _id = req.params.id;
-    let answers = await Question.findOne({'answers._id': _id}, 'authorName answer');
-    console.log(answers.authorName, "Hej");
+    let answers = await Question.findOne({'answers._id': _id}, 'authorName answer',function (err, person){
+        if (err) return handleError(err);
+        return res.status(202).send({
+            error: false,
+            person
+        })
+        // console.log(person.authorName)
+    } );
     // let answers = await Question.find({"answers": {_id: _id}})
     // console.log(Question.findById(_id).title)
-    return res.status(202).send({
-        error: false,
-        answers
-    })
+
 });
 
 // app.get('/api/question/:id', (req, res) => {
