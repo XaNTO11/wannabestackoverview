@@ -74,6 +74,7 @@ class App extends Component {
   }
     Vote(votes, aId){
         const url = `${this.API_URL}/question/answers/`+ aId;
+        console.log(aId, "AID")
         fetch(url, {
             method: 'PUT',
             body: JSON.stringify({
@@ -85,6 +86,7 @@ class App extends Component {
         })
             .then(response => response.json())
             .then(json => {
+                console.log("Increasing or Decreasing votes");
                 this.getData();
             });
         // let vote = votes
