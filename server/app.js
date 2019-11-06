@@ -23,53 +23,7 @@ const questionSchema = new mongoose.Schema({
 })
 const Question = mongoose.model('Questions', questionSchema);
 
-    // app.get(`/api/questions`, async (req, res) => {
-    //     let questions = await Question.find();
-    //     return res.status(200).send(questions);
-    //
-    // });
-
-// app.get(`/api/question/:id`, async (req, res) => {
-//     const _id = req.params.id;
-//     let question = await Question.findById(_id);
-//     return res.status(202).send({
-//         error: false,
-//         question
-//     })
-// });
-
-// app.post(`/api/questions`, async (req, res) => {
-//         let question = await Question.create(req.body);
-//         return res.status(201).send({
-//             error: false,
-//             question
-//         })
-//
-//     })
-
-// app.put(`/api/question/:id`, async (req, res) => {
-//     const _id = req.params.id;
-//
-//     let question = await Question.findById(_id)
-//     question.answers.push(req.body)
-//     question.save();
-//
-//     return res.status(202).send({
-//         error: false,
-//         question
-//     })
-// });
-
-// app.put(`/api/question/answers/:id`, async (req, res) => {
-//     const _id = req.params.id;
-//     let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers.$.votes": req.body.votes}})
-//     return res.status(202).send(answer)
-// });
-
 /**** Start! ****/
-
-
-
 
 const url = process.env.MONGO_DB
 
