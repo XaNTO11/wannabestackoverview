@@ -23,59 +23,71 @@ const questionSchema = new mongoose.Schema({
 })
 const Question = mongoose.model('Questions', questionSchema);
 
-    app.get(`/api/questions`, async (req, res) => {
-        let questions = await Question.find();
-        return res.status(200).send(questions);
+    // app.get(`/api/questions`, async (req, res) => {
+    //     let questions = await Question.find();
+    //     return res.status(200).send(questions);
+    //
+    // });
 
-    });
+// app.get(`/api/question/:id`, async (req, res) => {
+//     const _id = req.params.id;
+//     let question = await Question.findById(_id);
+//     return res.status(202).send({
+//         error: false,
+//         question
+//     })
+// });
 
-app.get(`/api/question/:id`, async (req, res) => {
-    const _id = req.params.id;
-    let question = await Question.findById(_id);
-    return res.status(202).send({
-        error: false,
-        question
-    })
-});
+// app.post(`/api/questions`, async (req, res) => {
+//         let question = await Question.create(req.body);
+//         return res.status(201).send({
+//             error: false,
+//             question
+//         })
+//
+//     })
 
-app.post(`/api/questions`, async (req, res) => {
-        let question = await Question.create(req.body);
-        return res.status(201).send({
-            error: false,
-            question
-        })
+// app.put(`/api/question/:id`, async (req, res) => {
+//     const _id = req.params.id;
+//
+//     let question = await Question.findById(_id)
+//     question.answers.push(req.body)
+//     question.save();
+//
+//     return res.status(202).send({
+//         error: false,
+//         question
+//     })
+// });
 
-    })
-
-app.put(`/api/question/:id`, async (req, res) => {
-    const _id = req.params.id;
-
-    let question = await Question.findById(_id)
-    question.answers.push(req.body)
-    question.save();
-
-    return res.status(202).send({
-        error: false,
-        question
-    })
-});
-
-app.put(`/api/question/answers/:id`, async (req, res) => {
-    const _id = req.params.id;
-    let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers.$.votes": req.body.votes}})
-    return res.status(202).send(answer)
-});
+// app.put(`/api/question/answers/:id`, async (req, res) => {
+//     const _id = req.params.id;
+//     let answer = await Question.findOneAndUpdate({'answers._id': _id}, {$inc: {"answers.$.votes": req.body.votes}})
+//     return res.status(202).send(answer)
+// });
 
 /**** Start! ****/
-app.get('*', (req, res) =>
-    res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
-);
+
+
+
+
 const url = process.env.MONGO_DB
 
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb://Brian:Brian1990@ds337718.mlab.com:37718/question_db", {useNewUrlParser: true, useUnifiedTopology: true})
     .then((connection) => {
+
+        const questionsRouter = require('./questions_routes')(Question);
+        app.use('/api/questions', questionsRouter);
+
+        const questionRouter = require('./question_routes')(Question);
+        app.use('/api/question', questionRouter);
+
         app.listen(port, () => console.log(`${appName} API running on port ${port}!`));
         console.log("Database connected");
+
+        app.get('*', (req, res) =>
+            res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+        );
     })
     .catch(e => { // If any errors happens during connection, we print them here.
         console.error(e)
