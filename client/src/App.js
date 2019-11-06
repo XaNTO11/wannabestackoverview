@@ -3,6 +3,7 @@ import './App.css';
 import Question from './Question'
 import Questions from "./Questions";
 import {Router} from "@reach/router";
+import { stringArraysEqual } from './Util';
 
 class App extends Component {
 
@@ -26,8 +27,40 @@ class App extends Component {
             questionList: json
         })
   }
+    // async loadQuestionData(id) {
+    //     const updateQuestion = (question) => {
+    //         const index = this.state.questionList.findIndex(k => k._id === id);
+    //         if (index === -1) return; // Return if kitten is not yet in app.js state
+    //         const localQuestion = this.state.questionList[index];
+    //
+    //         // See if the kitten has new data
+    //         let equal = stringArraysEqual(JSON.stringify(question.answers), JSON.stringify(localQuestion.answers));
+    //
+    //         // Only update state if data is new (not equal)!
+    //         // Otherwise, this will result in an infinite React re-render loop!
+    //         if (!equal) {
+    //             console.log("Updating local kitten state with new data", question._id);
+    //             const newQuestionsState = this.state.questionList;
+    //             newQuestionsState[index] = question; // Replace old data with new
+    //             this.setState({ // Update state
+    //                 questionList: newQuestionsState
+    //             })
+    //         }
+    //     };
+    //     try {
+    //         let url = `${this.API_URL}/question/${id}`; // URL of the API.
+    //         let result = await fetch(url); // Get the data
+    //         let question = await result.json(); // Turn it into json
+    //         updateQuestion(question); // Kitten loaded, let's update state.
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // }
 
     getQuestion(_id){
+        // this.loadQuestionData(_id).then(console.log("Kitten fetched", _id));
+        // Find the relevant kitten by id - not waiting for new data.
+        // return this.state.questionList.find(k => k._id === id);
       return this.state.questionList.find(e => e._id === String(_id));
   }
 
