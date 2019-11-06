@@ -27,7 +27,7 @@ class App extends Component {
         })
   }
 
-    async getQuestion(_id){
+    getQuestion(_id){
       return this.state.questionList.find(e => e._id === String(_id));
   }
 
